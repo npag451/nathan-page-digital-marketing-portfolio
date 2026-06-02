@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nathan Page — Digital Campaign Executive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #1A2F45;
+    --navy-light: #243B55;
+    --white: #FAFBFC;
+    --off-white: #F0F2F5;
+    --accent: #4A90D9;
+    --accent-light: rgba(74,144,217,0.1);
+    --text-muted: #7A8B9A;
+    --border: rgba(255,255,255,0.08);
+    --serif: 'Playfair Display', serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--navy); color: var(--white); line-height: 1.6; overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.25rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(13,27,42,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; color: var(--white); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
+
+  #hero { min-height: 100vh; display: flex; align-items: center; padding: 0 4rem; position: relative; overflow: hidden; }
+  .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(74,144,217,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(74,144,217,0.04) 1px, transparent 1px); background-size: 60px 60px; }
+  .hero-glow { position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(74,144,217,0.12) 0%, transparent 70%); pointer-events: none; }
+  .hero-content { position: relative; max-width: 900px; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+  .hero-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
+  h1 { font-family: var(--serif); font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .hero-sub { font-size: 1.15rem; color: rgba(250,251,252,0.65); max-width: 560px; margin-bottom: 2.5rem; font-weight: 300; line-height: 1.7; }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.75rem; background: var(--accent); color: var(--white); text-decoration: none; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.04em; border-radius: 4px; transition: all 0.2s; }
+  .btn-primary:hover { background: #3A7FC5; transform: translateY(-1px); }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 1.75rem; border: 1px solid rgba(255,255,255,0.2); color: var(--white); text-decoration: none; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.04em; border-radius: 4px; transition: all 0.2s; }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .hero-stats { display: flex; gap: 3rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border); }
+  .stat-num { font-family: var(--serif); font-size: 2rem; font-weight: 700; color: var(--accent); display: block; }
+  .stat-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; }
+
+  .section-wrap { padding: 6rem 4rem; max-width: 1100px; margin: 0 auto; }
+  .section-wrap-full { padding: 6rem 0; }
+  .inner { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
+  .section-label { display: flex; align-items: center; gap: 0.75rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 60px; }
+  h2 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; line-height: 1.15; margin-bottom: 1rem; }
+  .section-intro { font-size: 1.05rem; color: rgba(250,251,252,0.6); max-width: 560px; margin-bottom: 3rem; font-weight: 300; line-height: 1.7; }
+
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { color: rgba(250,251,252,0.75); line-height: 1.8; margin-bottom: 1.25rem; font-size: 1rem; }
+  .about-text p strong { color: var(--white); font-weight: 600; }
+  .about-text p em { font-style: italic; color: rgba(250,251,252,0.85); }
+  .about-highlights { display: flex; flex-direction: column; gap: 1.25rem; }
+  .highlight-card { padding: 1.5rem; background: var(--navy-mid); border: 1px solid var(--border); border-radius: 6px; border-left: 3px solid var(--accent); }
+  .highlight-card .metric { font-family: var(--serif); font-size: 1.75rem; font-weight: 700; color: var(--accent); display: block; margin-bottom: 0.25rem; }
+  .highlight-card .metric-label { font-size: 0.875rem; color: rgba(250,251,252,0.6); line-height: 1.5; }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .skill-card { padding: 1.75rem; background: var(--navy); border: 1px solid var(--border); border-radius: 6px; transition: border-color 0.2s, transform 0.2s; }
+  .skill-card:hover { border-color: rgba(74,144,217,0.3); transform: translateY(-2px); }
+  .skill-icon { width: 36px; height: 36px; background: var(--accent-light); border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; font-size: 1.1rem; }
+  .skill-card h3 { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--white); letter-spacing: 0.02em; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag { font-size: 0.75rem; padding: 0.25rem 0.6rem; background: rgba(74,144,217,0.1); border: 1px solid rgba(74,144,217,0.2); border-radius: 3px; color: rgba(250,251,252,0.7); font-weight: 500; }
+
+  .exp-list { display: flex; flex-direction: column; }
+  .exp-item { display: grid; grid-template-columns: 200px 1fr; gap: 2rem; padding: 2.5rem 0; border-bottom: 1px solid var(--border); }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-meta { position: sticky; top: 6rem; align-self: start; }
+  .exp-period { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; letter-spacing: 0.04em; margin-bottom: 0.5rem; text-transform: uppercase; }
+  .exp-brand { font-size: 0.875rem; color: var(--accent); font-weight: 600; }
+  .exp-location { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; }
+  .exp-content h3 { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; }
+  .exp-desc { font-size: 0.95rem; color: rgba(250,251,252,0.65); line-height: 1.75; margin-bottom: 1.25rem; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .exp-bullets li { font-size: 0.9rem; color: rgba(250,251,252,0.7); line-height: 1.6; padding-left: 1.25rem; position: relative; }
+  .exp-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 0.75rem; top: 0.15rem; }
+  .exp-bullets li strong { color: var(--white); font-weight: 600; }
+
+  .cases-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .case-card { padding: 2rem; background: var(--navy); border: 1px solid var(--border); border-radius: 6px; transition: border-color 0.2s, transform 0.2s; }
+  .case-card:hover { border-color: rgba(74,144,217,0.3); transform: translateY(-3px); }
+  .case-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+  .case-tag { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+  .case-card h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; line-height: 1.25; margin-bottom: 0.75rem; }
+  .case-card p { font-size: 0.9rem; color: rgba(250,251,252,0.6); line-height: 1.7; margin-bottom: 1.25rem; }
+  .case-results { display: flex; gap: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+  .result-num { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; color: var(--accent); display: block; }
+  .result-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; }
+
+  .cert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 2rem; }
+  .cert-group { padding: 1.5rem; background: var(--navy-mid); border: 1px solid var(--border); border-radius: 6px; }
+  .cert-group-title { display: flex; align-items: center; gap: 0.6rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+  .cert-badge { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; }
+  .cert-badge.hubspot { background: #FF7A59; color: white; }
+  .cert-badge.google { background: #4285F4; color: white; }
+  .cert-badge.meta { background: #0668E1; color: white; }
+  .cert-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .cert-list li { font-size: 0.875rem; color: rgba(250,251,252,0.7); padding-left: 1rem; position: relative; line-height: 1.5; }
+  .cert-list li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-size: 0.7rem; top: 0.15rem; }
+  .cert-note { font-size: 0.75rem; color: var(--text-muted); font-style: italic; margin-top: 0.5rem; padding-left: 1rem; }
+
+  .edu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .edu-card { padding: 2rem; background: var(--navy); border: 1px solid var(--border); border-radius: 6px; }
+  .edu-institution { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+  .edu-card h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .edu-card p { font-size: 0.875rem; color: rgba(250,251,252,0.6); line-height: 1.6; }
+  .edu-awards { margin-top: 0.75rem; font-size: 0.8rem; color: var(--accent); font-weight: 500; line-height: 1.6; }
+
+  .extras-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .extra-card { padding: 1.75rem; background: var(--navy-mid); border: 1px solid var(--border); border-radius: 6px; }
+  .extra-card h3 { font-size: 0.9rem; font-weight: 700; letter-spacing: 0.04em; margin-bottom: 0.75rem; color: var(--white); }
+  .extra-card p { font-size: 0.875rem; color: rgba(250,251,252,0.6); line-height: 1.6; }
+
+  #contact { background: var(--navy-light); padding: 5rem 4rem; text-align: center; }
+  #contact h2 { margin-bottom: 0.75rem; }
+  #contact .section-label { justify-content: center; }
+  #contact p { color: rgba(250,251,252,0.6); margin-bottom: 2.5rem; font-size: 1rem; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  footer { padding: 1.5rem 4rem; text-align: center; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border); }
+
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    #hero, .section-wrap, .inner { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .about-grid, .skills-grid, .cases-grid, .case-card.featured, .cert-grid, .edu-grid, .extras-grid { grid-template-columns: 1fr; }
+    .case-card.featured { grid-column: span 1; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.75rem; }
+    .hero-stats { flex-direction: column; gap: 1.5rem; }
+    #contact { padding: 4rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">Nathan Page</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Digital Campaign Executive</div>
+    <h1>Campaigns that<br><em>move the needle.</em></h1>
+    <p class="hero-sub">Three years of end-to-end campaign ownership across paid social, CRM, organic and performance — built across two brands, two markets, from Auckland to London.</p>
+    <div class="hero-ctas">
+      <a href="#work" class="btn-primary">See the work →</a>
+      <a href="#contact" class="btn-ghost">Get in touch</a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="stat-num">3+</span><span class="stat-label">Years experience</span></div>
+      <div><span class="stat-num">3</span><span class="stat-label">Brands owned</span></div>
+      <div><span class="stat-num">2</span><span class="stat-label">Markets managed</span></div>
+      <div><span class="stat-num">1M+</span><span class="stat-label">Campaign impressions</span></div>
+    </div>
+  </div>
+</div>
+
+<div id="about" style="padding: 6rem 0; background: var(--navy);">
+  <div class="section-wrap">
+    <div class="section-label">About</div>
+    <h2>The person behind the campaigns.</h2>
+    <div class="about-grid fade-in">
+      <div class="about-text">
+        <p>I'm a Digital Campaign Executive with three years of end-to-end ownership across paid social, organic, eDM, CRM, SEO, and agency management. I built and ran the digital campaign infrastructure for <strong>La-Z-Boy NZ/AU</strong> and <strong>Hunter Home NZ</strong> — simultaneously, across two markets, from brief to post-campaign analysis.</p>
+        <p>I don't just execute tasks. I own workstreams. I write the brief, build the systems brief, coordinate design and web, manage the agency, set up reporting before launch, and present the PCA to the CMO. That's the level I operate at.</p>
+        <p>Originally from New Zealand, now based in London. I relocated in early 2026 and have been running full remote campaign delivery for Morgan Furniture Group while building my career in the UK market.</p>
+        <p>I care about work that's commercially grounded and creatively sharp. The best campaigns make people feel something <em>and</em> move the business forward. That balance is where I live.</p>
+      </div>
+      <div class="about-highlights">
+        <div class="highlight-card"><span class="metric">20%</span><span class="metric-label">YoY reduction in CPM/CPCs through improved audience modelling and in-housed paid social strategy</span></div>
+        <div class="highlight-card"><span class="metric">15%</span><span class="metric-label">Uplift in email open rates from optimised CRM journeys and segmentation improvements</span></div>
+        <div class="highlight-card"><span class="metric">$30K</span><span class="metric-label">Annual cost saving by transitioning from Hootsuite to Canva across organic social workflows</span></div>
+        <div class="highlight-card"><span class="metric">$600K</span><span class="metric-label">eCommerce revenue contribution over six months at Vuse</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="skills" style="padding: 6rem 0; background: var(--navy-mid);">
+  <div class="inner">
+    <div class="section-label">Capabilities</div>
+    <h2>The full toolkit.</h2>
+    <p class="section-intro">Channel-fluent, commercially minded. I've owned or operated across every major digital touchpoint.</p>
+    <div class="skills-grid fade-in">
+      <div class="skill-card"><div class="skill-icon">📣</div><h3>Paid Social</h3><div class="skill-tags"><span class="tag">Meta Ads Manager</span><span class="tag">Facebook</span><span class="tag">Instagram</span><span class="tag">Audience segmentation</span><span class="tag">A/B testing</span><span class="tag">Lead gen</span></div></div>
+      <div class="skill-card"><div class="skill-icon">🔍</div><h3>Paid Search & Analytics</h3><div class="skill-tags"><span class="tag">Google Ads</span><span class="tag">Performance Max</span><span class="tag">Demand Gen</span><span class="tag">GA4</span><span class="tag">Google Search Console</span><span class="tag">UTM parameters</span></div></div>
+      <div class="skill-card"><div class="skill-icon">📧</div><h3>CRM & eDM</h3><div class="skill-tags"><span class="tag">Mailchimp</span><span class="tag">Klaviyo</span><span class="tag">Segmentation</span><span class="tag">Automation</span><span class="tag">Database growth</span><span class="tag">eDM scheduling</span></div></div>
+      <div class="skill-card"><div class="skill-icon">📅</div><h3>Organic Social & Content</h3><div class="skill-tags"><span class="tag">Social calendars</span><span class="tag">Facebook</span><span class="tag">Instagram</span><span class="tag">Caption copy</span><span class="tag">Canva</span><span class="tag">Creative briefing</span></div></div>
+      <div class="skill-card"><div class="skill-icon">🔗</div><h3>SEO & Affiliates</h3><div class="skill-tags"><span class="tag">Content briefs</span><span class="tag">Backlink coordination</span><span class="tag">Authority building</span><span class="tag">Affiliate management</span><span class="tag">Awin</span></div></div>
+      <div class="skill-card"><div class="skill-icon">🤝</div><h3>Agency & Stakeholder Management</h3><div class="skill-tags"><span class="tag">Agency briefing</span><span class="tag">Campaign dispatch</span><span class="tag">Pacing reports</span><span class="tag">PCA reporting</span><span class="tag">Multi-agency coordination</span></div></div>
+    </div>
+  </div>
+</div>
+
+<div id="experience" style="padding: 6rem 0; background: var(--navy);">
+  <div class="section-wrap">
+    <div class="section-label">Experience</div>
+    <h2>Where I've built it.</h2>
+    <div class="exp-list fade-in">
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-period">Feb 2025 – Present</div>
+          <div class="exp-brand">Morgan Furniture Group</div>
+          <div class="exp-location">Auckland, NZ → London, UK</div>
+        </div>
+        <div class="exp-content">
+          <h3>Digital Campaign Executive</h3>
+          <p class="exp-desc">Promoted to lead digital campaign execution across La-Z-Boy NZ/AU and Hunter Home NZ. Expanded ownership of paid social, CRM, and campaign optimisation across two international brands and two markets.</p>
+          <ul class="exp-bullets">
+            <li>In-housed paid social, taking full ownership of Ads Manager setup and delivery. Refined audience strategy through improved modelling — delivering a <strong>20% YoY reduction in CPM/CPCs</strong>.</li>
+            <li>Evolved end-to-end CRM and email marketing strategy driving a <strong>15% uplift in open rates and 20% database growth</strong> through optimised lead-gen journeys and nurturing.</li>
+            <li>Implemented performance-led reporting and structured test-and-learn optimisation, translating channel data into clear campaign priorities.</li>
+            <li>Worked directly with senior marketing leadership and agency partners to shape campaign pacing, channel mix and execution priorities aligned to revenue targets.</li>
+            <li>Successfully negotiated a remote contractor arrangement post-relocation to London — securing improved rate, 8% casual holiday pay loading, and UK listed as place of work.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-period">May 2023 – Feb 2025</div>
+          <div class="exp-brand">Morgan Furniture Group</div>
+          <div class="exp-location">Auckland, New Zealand</div>
+        </div>
+        <div class="exp-content">
+          <h3>Digital Marketing Coordinator</h3>
+          <p class="exp-desc">Recruited to support digital execution across La-Z-Boy NZ/AU and Hunter Home. Progressed quickly through increased responsibility, leading to promotion within two years.</p>
+          <ul class="exp-bullets">
+            <li>Led digital content and UX alignment across <strong>three website refreshes</strong> across NZ and AU, improving on-site clarity, promotional journeys and post-launch conversion.</li>
+            <li>Supported two major brand refreshes — Long Live the Lazy (La-Z-Boy) and Make Your Home More You (Hunter Home) — owning rollout across web, email and social. Campaigns reached <strong>1M+ impressions</strong>.</li>
+            <li>Streamlined organic social workflows by introducing Canva and phasing out Hootsuite, delivering a <strong>$30K annual cost saving</strong>.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-period">Nov 2022 – May 2023</div>
+          <div class="exp-brand">Vuse</div>
+          <div class="exp-location">Auckland, New Zealand</div>
+        </div>
+        <div class="exp-content">
+          <h3>Marketing Intern → Marketing Specialist</h3>
+          <p class="exp-desc">Supported multi-channel digital campaigns across web, social and eDM for a leading global consumer brand.</p>
+          <ul class="exp-bullets">
+            <li>Contributed to <strong>$600K in eCommerce revenue</strong> over six months through campaign execution across web, social and email.</li>
+            <li>Progressed from intern to specialist within the contract period — recognised for pace, reliability and output quality.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-meta">
+          <div class="exp-period">Nov 2021 – Nov 2022</div>
+          <div class="exp-brand">Gemalto</div>
+          <div class="exp-location">Auckland, New Zealand</div>
+        </div>
+        <div class="exp-content">
+          <h3>Image Specialist</h3>
+          <p class="exp-desc">Conducted detailed research and quality checks on personalised debit card imagery, requiring strong attention to detail and advanced Excel proficiency. Built habits of accuracy and systematic quality control.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="work" style="padding: 6rem 0; background: var(--navy-mid);">
+  <div class="inner">
+    <div class="section-label">Case Studies</div>
+    <h2>The work, with receipts.</h2>
+    <p class="section-intro">Selected campaign results across conversion optimisation, paid social and lead generation. Numbers are real.</p>
+    <div class="cases-grid fade-in">
+      <div class="case-card featured">
+        <div>
+          <span class="case-tag">Conversion Optimisation</span>
+          <h3>Recliner Finder Tool — Doubling Conversion Through Better UX</h3>
+          <p>La-Z-Boy's recliner finder quiz was sitting at 8–9% sign-up rate against a 10% target. I diagnosed two root causes: quiz drop-off after four questions, and a sign-up CTA with no genuine value exchange. By shortening the quiz and working with Preezie and Mailchimp to deliver quiz results by email — a real reason to hand over your address — conversion rate jumped to 15% in a single month.</p>
+          <div class="skill-tags" style="margin-top:1rem;"><span class="tag">Preezie</span><span class="tag">Mailchimp</span><span class="tag">CRM automation</span><span class="tag">UX optimisation</span><span class="tag">A/B testing</span></div>
+        </div>
+        <div>
+          <div style="display:flex; flex-direction:column; gap:1.5rem;">
+            <div><span class="result-num">8–9% → 15%</span><span class="result-label">Sign-up conversion rate</span></div>
+            <div><span class="result-num">70%+</span><span class="result-label">Improvement in one month</span></div>
+            <div style="font-size:0.875rem; color: rgba(250,251,252,0.5); line-height:1.6; padding-top:1rem; border-top: 1px solid var(--border);">The problem was never the traffic. It was the value exchange. Fixing the CTA was worth more than doubling ad spend.</div>
+          </div>
+        </div>
+      </div>
+      <div class="case-card">
+        <span class="case-tag">Paid Social Optimisation</span>
+        <h3>Black Friday — Mid-Campaign Recovery</h3>
+        <p>CPCs spiked above benchmark mid-campaign for La-Z-Boy NZ. Diagnosed as stale lookalike audiences and creative fatigue after six weeks of sale activity. Cross-referenced with AU Nunn Media account, rebuilt audiences from a tighter customer base, introduced creative refresh. Resolved within 48 hours.</p>
+        <div class="skill-tags" style="margin-bottom:1.25rem;"><span class="tag">Meta Ads Manager</span><span class="tag">Audience rebuilding</span><span class="tag">Creative refresh</span><span class="tag">Cross-market analysis</span></div>
+        <div class="case-results">
+          <div><span class="result-num">$2.50→&lt;$2</span><span class="result-label">CPC recovered</span></div>
+          <div><span class="result-num">&lt;$3</span><span class="result-label">CPM from high $3s</span></div>
+        </div>
+      </div>
+      <div class="case-card">
+        <span class="case-tag">Lead Generation</span>
+        <h3>Database-First Giveaway — 30% Over Target</h3>
+        <p>Designed and ran a database-first giveaway campaign across La-Z-Boy NZ/AU ahead of EOFY. Built the full infrastructure end-to-end: creative brief, systems brief, web form, Meta lead form, popup, Track 2 eDM for existing database, hidden confirmation pages, ROI tracker and fulfilment coordination. Reporting set up before launch.</p>
+        <div class="skill-tags" style="margin-bottom:1.25rem;"><span class="tag">Meta lead forms</span><span class="tag">Mailchimp</span><span class="tag">Landing pages</span><span class="tag">UTM tracking</span><span class="tag">eDM</span></div>
+        <div class="case-results">
+          <div><span class="result-num">6,500</span><span class="result-label">De-duped entries</span></div>
+          <div><span class="result-num">5,000</span><span class="result-label">Benchmark</span></div>
+          <div><span class="result-num">+30%</span><span class="result-label">Over target</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="certifications" style="padding: 6rem 0; background: var(--navy);">
+  <div class="section-wrap">
+    <div class="section-label">Certifications</div>
+    <h2>Backed by the platforms.</h2>
+    <p class="section-intro">Certified across Meta, Google and HubSpot. Actively completing additional platform certifications.</p>
+    <div class="cert-grid fade-in">
+      <div class="cert-group">
+        <div class="cert-group-title"><span class="cert-badge meta">M</span>Meta Certifications</div>
+        <ul class="cert-list">
+          <li>Meta Certified Digital Marketing Associate (100-101)</li>
+          <li>Meta Certified Business Marketing Strategist (800-101)</li>
+          <li>Meta Certified Media Planning Professional (400-101)</li>
+          <li>Meta Certified Media Measurement Specialist</li>
+        </ul>
+        <p class="cert-note">* Completing shortly</p>
+      </div>
+      <div class="cert-group">
+        <div class="cert-group-title"><span class="cert-badge google">G</span>Google Certifications</div>
+        <ul class="cert-list">
+          <li>Google Analytics — Skillshop</li>
+          <li>Google Ads Search Certification</li>
+          <li>Google Ads Display Certification</li>
+          <li>Google Ads Measurement Certification</li>
+          <li>Manage GA Data and Learn to Read Reports</li>
+        </ul>
+        <p class="cert-note">* Completing shortly</p>
+      </div>
+      <div class="cert-group">
+        <div class="cert-group-title"><span class="cert-badge hubspot">H</span>HubSpot Academy</div>
+        <ul class="cert-list">
+          <li>Digital Marketing</li>
+          <li>Content Marketing</li>
+          <li>Inbound Marketing</li>
+          <li>Email Marketing</li>
+          <li>Inbound Marketing Optimisation</li>
+          <li>SEO</li>
+        </ul>
+      </div>
+      <div class="cert-group" style="display:flex; align-items:center; justify-content:center; text-align:center; border-style: dashed; border-color: rgba(74,144,217,0.2);">
+        <div>
+          <div style="font-size:1.5rem; margin-bottom:0.75rem;">🎯</div>
+          <p style="font-size:0.875rem; color: var(--text-muted); line-height:1.6;">Continuously building. Platform certifications updated as new modules are completed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="education" style="padding: 6rem 0; background: var(--navy-mid);">
+  <div class="inner">
+    <div class="section-label">Education</div>
+    <h2>The foundation.</h2>
+    <div class="edu-grid fade-in">
+      <div class="edu-card">
+        <div class="edu-institution">University of Auckland</div>
+        <h3>Bachelor of Commerce</h3>
+        <p>Majoring in International Business and Marketing</p>
+        <div class="edu-awards">GPA 8.25 — A-average across final two years<br>Top-of-class awards in Marketing and International Business</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-institution">Rosmini College</div>
+        <h3>Secondary Education — Years 7–13</h3>
+        <p>NCEA Levels 1–3 endorsed with Excellence</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="extras" style="padding: 6rem 0; background: var(--navy);">
+  <div class="section-wrap">
+    <div class="section-label">Beyond the brief</div>
+    <h2>The rest of me.</h2>
+    <div class="extras-grid fade-in">
+      <div class="extra-card">
+        <h3>🏏 Cricket & Football</h3>
+        <p>Former Premier 1st XI cricketer. Auckland Premier Championship winner (2019). NZ Nationals representative. The discipline and team dynamics of high-level sport translate directly to how I work.</p>
+      </div>
+      <div class="extra-card">
+        <h3>📊 Case Competitions</h3>
+        <p>Participated in consulting-style case competitions through the Auckland University Management Consulting Club. Built the habit of structured commercial thinking under time pressure.</p>
+      </div>
+      <div class="extra-card">
+        <h3>❤️ Volunteering</h3>
+        <p>Young Vinnies — supported learning programmes for disadvantaged children through tutoring. Because some things matter more than the day job.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="contact">
+  <div class="section-label">Let's talk</div>
+  <h2>Open to the right opportunity.</h2>
+  <p>London-based, available from October 2026. If you're looking for someone who owns things end-to-end and brings both commercial and creative thinking — get in touch.</p>
+  <div class="contact-links">
+    <a href="mailto:nathantpage0203@gmail.com" class="btn-primary">nathantpage0203@gmail.com</a>
+    <a href="https://www.linkedin.com/in/nathan-page-32ba78245/" target="_blank" class="btn-ghost">LinkedIn →</a>
+  </div>
+</div>
+
+<footer>Nathan Page · Digital Campaign Executive · London, UK</footer>
+
+<script>
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id'); });
+    navLinks.forEach(l => { l.style.color = l.getAttribute('href') === '#' + current ? 'var(--white)' : ''; });
+  });
+</script>
+</body>
+</html>
