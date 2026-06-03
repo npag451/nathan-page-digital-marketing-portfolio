@@ -39,7 +39,7 @@
   #hero { min-height: 100vh; display: flex; align-items: center; padding: 0 4rem; position: relative; overflow: hidden; }
   .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(74,144,217,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(74,144,217,0.04) 1px, transparent 1px); background-size: 60px 60px; }
   .hero-glow { position: absolute; top: -20%; right: -10%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(74,144,217,0.12) 0%, transparent 70%); pointer-events: none; }
-  .hero-content { position: relative; max-width: 900px; }
+  .hero-content { position: relative; max-width: 900px; flex: 1; }
   .hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
   .hero-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
   h1 { font-family: var(--serif); font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
@@ -53,6 +53,7 @@
   .hero-stats { display: flex; gap: 3rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--border); }
   .stat-num { font-family: var(--serif); font-size: 2rem; font-weight: 700; color: var(--accent); display: block; }
   .stat-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500; }
+    .hero-photo { width: 260px; height: 260px; border-radius: 50%; object-fit: cover; object-position: top; border: 3px solid var(--accent); flex-shrink: 0; box-shadow: 0 0 40px rgba(74,144,217,0.2); }
 
   .section-wrap { padding: 6rem 4rem; max-width: 1100px; margin: 0 auto; }
   .section-wrap-full { padding: 6rem 0; }
@@ -148,6 +149,7 @@
     .exp-item { grid-template-columns: 1fr; gap: 0.75rem; }
     .hero-stats { flex-direction: column; gap: 1.5rem; }
     #contact { padding: 4rem 1.5rem; }
+        .hero-photo { width: 160px; height: 160px; }
   }
 </style>
 </head>
@@ -183,6 +185,7 @@
       <div><span class="stat-num">1M+</span><span class="stat-label">Campaign impressions</span></div>
     </div>
   </div>
+      <img src="nathan_headshot.jpg" alt="Nathan Page" class="hero-photo">
 </div>
 
 <div id="about" style="padding: 6rem 0; background: var(--navy);">
